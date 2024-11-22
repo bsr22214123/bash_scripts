@@ -11,8 +11,8 @@ fi
 target_ip=$1
 
 # Run nmap and save output in greppable format
-sudo nmap -p- -oG nmap_all $target_ip > /dev/null
-openPorts=$(grep "/open/tcp" nmap_all | awk '{for(i=1;i<=NF;i++) if($i ~ /[0-9]+\/open\/tcp/) print $i}' | cut -d'/' -f1 | paste -sd, -)
+sudo nmap -p- -oG nmap0 $target_ip > /dev/null
+openPorts=$(grep "/open/tcp" nmap0 | awk '{for(i=1;i<=NF;i++) if($i ~ /[0-9]+\/open\/tcp/) print $i}' | cut -d'/' -f1 | paste -sd, -)
 
 # Check if we found any open ports
 if [ -n "$openPorts" ]; then
